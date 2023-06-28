@@ -1,0 +1,1 @@
+Get-VMHost | Select @{n="vCenter"; e={($_.ExtensionData.Client.ServiceUrl.Split('/')[2])}},@{N="Cluster";E={Get-Cluster -VMHost $_}},Name,@{N='Serial';E={(Get-EsxCli -VMHost $_).hardware.platform.get().SerialNumber}},@{N='ENclosureSerial';E={(Get-EsxCli -VMHost $_).hardware.platform.get().EnclosureSerialNumber}}|Export-Csv vc-clu-vmhost-enclosure-serial.csv

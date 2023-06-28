@@ -1,0 +1,3 @@
+Get-VMHost | Select  @{n="vCenter"; e={($_.ExtensionData.Client.ServiceUrl.Split('/')[2])}},@{N="Cluster";E={Get-Clu
+ster -VMHost $_}},Name,@{N='Serial';E={(Get-EsxCli -VMHost $_).hardware.platform.get().SerialNumber}}|Export-Csv .\Users
+\Lingaraju.Perugu\Desktop\hyd-vc-clus-host-serial.csv
